@@ -31,7 +31,7 @@ public class Config extends OkaeriConfig {
     public List<String> text = List.of(
         "§l§7-------------",
         "§l§bMythicalGames",
-        "§l§8| §l§7Ｇａｍｅｍｏｄｅ: §r§c{game_mode}",
+        "§l§8| §l§7Ｇｍ: §r§c{game_mode}",
         "§l§8| §l§7Ｏｓ: §r§f{device_os}",
         "§l§8| §l§7ʟᴏʙʙʏ: §r§f#1",
         "§l",
