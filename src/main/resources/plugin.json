@@ -1,6 +1,6 @@
 {
-  "entrance": "org.allaymc.javaplugintemplate.JavaPluginTemplate",
-  "name": "JavaPluginTemplate",
-  "authors": ["YourNameHere"],
-  "version": "0.1.0"
+  "entrance": "com.mythicalgames.scoreboard.SimpleScoreboard",
+  "name": "SimpleScoreboard",
+  "authors": ["ACKTAR"],
+  "version": "1.0.0"
 }
