@@ -8,7 +8,7 @@
 ## ✨ Features
 - 🚀 Lightweight and performance-friendly  
 - ⚙️ Fully configurable title and lines in `config.yml`  
-- 🧩 Supports placeholders via [AllayMC PlaceholderAPI (PAPI)](https://github.com/AllayMC/PAPI)  
+- 🧩 Supports placeholders via [AllayMC PlaceholderAPI (PAPI)](https://github.com/AllayMC/PlaceholderAPI)  
 - 🔄 Automatically updates scoreboard values in real-time  
 
 ---
