@@ -12,15 +12,19 @@ import java.util.List;
     "###############################################"
 })
 public class Config extends OkaeriConfig {
-
+    @Comment(" ")
+    @Comment(" ")
     @Comment({
         "How often scoreboard should be updated in ticks (20 ticks = 1 second)",
         "0 = disabled, ENABLE THIS IF YOU USE PLACEHOLDERS"
     })
     public int update = 0;
+    @Comment(" ")
 
     @Comment("Scoreboard title")
     public String title = "§l§bHeavenPE §fNetwork";
+    @Comment(" ")
+    @Comment(" ")
 
     @Comment({
         "Scoreboard lines",
@@ -43,7 +47,9 @@ public class Config extends OkaeriConfig {
         "§r§l§7-------------",
         "§bplay.heavenpe.net"
     );
-
+    
+    @Comment(" ")
+    @Comment(" ")
     @Comment("List of worlds where the scoreboard should be disabled")
     public List<String> noScoreboardWorlds = List.of("exampleWorld");
 }
