@@ -41,6 +41,9 @@ public void onEnable() {
                 @Override
                 public boolean onRun() {
                 for (EntityPlayer player : Server.getInstance().getPlayerManager().getPlayers().values()) {
+                    if (player == null || player.getWorld() == null || !player.isConnected()) {
+                        continue;
+                    }
                     PlayerScoreboardManager.update(player);
                 }
                 return true;
