@@ -22,7 +22,7 @@ public class Config extends OkaeriConfig {
     @Comment(" ")
 
     @Comment("Scoreboard title")
-    public String title = "§l§bHeavenPE §fNetwork";
+    public String title = "§l§bSimple §fScoreboard";
     @Comment(" ")
     @Comment(" ")
 

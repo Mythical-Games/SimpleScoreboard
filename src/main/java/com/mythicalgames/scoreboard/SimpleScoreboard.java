@@ -1,6 +1,6 @@
 package com.mythicalgames.scoreboard;
 
-import org.allaymc.api.entity.interfaces.EntityPlayer;
+import org.allaymc.api.player.Player;
 import org.allaymc.api.plugin.Plugin;
 import org.allaymc.api.server.Server;
 import org.allaymc.api.scheduler.Task;
@@ -40,8 +40,8 @@ public void onEnable() {
         Server.getInstance().getScheduler().scheduleRepeating(INSTANCE, new Task() {
                 @Override
                 public boolean onRun() {
-                for (EntityPlayer player : Server.getInstance().getPlayerManager().getPlayers().values()) {
-                    if (player == null || player.getWorld() == null || !player.isConnected()) {
+                for (Player player : Server.getInstance().getPlayerManager().getPlayers().values()) {
+                    if (player == null || player.getControlledEntity().getWorld() == null || !player.isConnected()) {
                         continue;
                     }
                     PlayerScoreboardManager.update(player);

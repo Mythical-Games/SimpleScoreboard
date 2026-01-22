@@ -2,7 +2,7 @@
   "entrance": "com.mythicalgames.scoreboard.SimpleScoreboard",
   "name": "SimpleScoreboard",
   "authors": ["ACKTAR"],
-  "version": "1.0.0",
-  "api_version": ">=0.12.0",
+  "version": "2.0.0",
+  "api_version": ">=0.22.0",
   "description": "A simple scoreboard plugin for AllayMC!"
 }

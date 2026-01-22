@@ -1,6 +1,6 @@
 package com.mythicalgames.scoreboard;
 
-import org.allaymc.api.entity.interfaces.EntityPlayer;
+import org.allaymc.api.player.Player;
 import org.allaymc.api.scoreboard.Scoreboard;
 import org.allaymc.api.scoreboard.data.DisplaySlot;
 import org.allaymc.api.server.Server;
@@ -14,7 +14,7 @@ public class PlayerScoreboardManager {
 
     private static final Map<String, Scoreboard> scoreboards = new HashMap<>();
 
-    public static void create(EntityPlayer player) {
+    public static void create(Player player) {
         if (shouldDisableInWorld(player)) return;
 
         Config config = SimpleScoreboard.INSTANCE.CONFIG;
@@ -22,7 +22,7 @@ public class PlayerScoreboardManager {
 
         if (isPlaceholderApiLoaded()) {
             try {
-                title = org.allaymc.papi.PlaceholderAPI.getAPI().setPlaceholders(player, title);
+                title = org.allaymc.papi.PlaceholderAPI.getAPI().setPlaceholders(player.getControlledEntity(), title);
                 if (title == null || title.isBlank()) title = config.title;
             } catch (Exception e) {
                 title = config.title;
@@ -36,24 +36,27 @@ public class PlayerScoreboardManager {
         update(player);
     }
 
-    public static void remove(EntityPlayer player) {
-        Scoreboard scoreboard = scoreboards.remove(player.getOriginName());
+    public static void remove(Player player) {
+        Player nrmalplayer = (Player) player;
+        Scoreboard scoreboard = scoreboards.remove(nrmalplayer.getOriginName());
         if (scoreboard != null) {
-            scoreboard.removeViewer(player, DisplaySlot.SIDEBAR);
+            scoreboard.removeViewer(nrmalplayer, DisplaySlot.SIDEBAR);
         }
     }
 
-    public static boolean hasScoreboard(EntityPlayer player) {
-        return scoreboards.containsKey(player.getOriginName());
+    public static boolean hasScoreboard(Player player) {
+        Player nrmalplayer = (Player) player;
+        return scoreboards.containsKey(nrmalplayer.getOriginName());
     }
 
-    public static void update(EntityPlayer player) {
+    public static void update(Player player) {
+        Player nrmalplayer = (Player) player;
         if (shouldDisableInWorld(player)) {
             remove(player);
             return;
         }
 
-        Scoreboard scoreboard = scoreboards.get(player.getOriginName());
+        Scoreboard scoreboard = scoreboards.get(nrmalplayer.getOriginName());
         if (scoreboard == null) {
             create(player);
             return;
@@ -68,7 +71,7 @@ public class PlayerScoreboardManager {
                 processedLines = config.text.stream()
                     .map(line -> {
                         try {
-                            String replaced = org.allaymc.papi.PlaceholderAPI.getAPI().setPlaceholders(player, line);
+                            String replaced = org.allaymc.papi.PlaceholderAPI.getAPI().setPlaceholders(player.getControlledEntity(), line);
                             return (replaced == null || replaced.isBlank()) ? line : replaced;
                         } catch (Exception e) {
                             return line;
@@ -87,8 +90,8 @@ public class PlayerScoreboardManager {
         scoreboard.setLines(processedLines);
     }
 
-    private static boolean shouldDisableInWorld(EntityPlayer player) {
-        String worldName = player.getWorld().getName();
+    private static boolean shouldDisableInWorld(Player player) {
+        String worldName = player.getControlledEntity().getWorld().getName();
         return SimpleScoreboard.INSTANCE.CONFIG.noScoreboardWorlds.contains(worldName);
     }
 
